@@ -39,6 +39,7 @@ A modern, production-ready scroll-driven hero section with cinematic animations 
 - Gradient borders and subtle glows
 - Interactive hover effects
 - Responsive stacking on mobile
+<img width="1917" height="1109" alt="image" src="https://github.com/user-attachments/assets/bce061ce-6175-4af7-ac0a-2bae5174b0e9" />
 
 ##📁 Structure
 
@@ -159,3 +160,4 @@ Point domain to `index.html`
 
 
 *"Building premium web experiences with motion and sophistication"*💫*Internship-ready portfolio showcase* 🎓
+
