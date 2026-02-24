@@ -1,4 +1,4 @@
-# Premium Scroll-Driven Hero Section
+# Scroll-Driven Hero Section
 
 A modern, production-ready scroll-driven hero section with cinematic animations built with vanilla JavaScript and GSAP ScrollTrigger.
 
@@ -156,5 +156,6 @@ Upload all files to any web server
 Point domain to `index.html`
 
 ---
+
 
 *"Building premium web experiences with motion and sophistication"*💫*Internship-ready portfolio showcase* 🎓
