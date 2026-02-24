@@ -1,0 +1,538 @@
+/* ==================== RESET & BASE STYLES ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --transition-speed: 0.4s;
+    --bg-intensity: 0.7;
+    --glow-intensity: 0.6;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow-x: hidden;
+    background: #000;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    isolation: isolate;
+    perspective: 2000px;
+    perspective-origin: center center;
+}
+
+/* Animated Background Gradient */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        #0a0a1a 0%, 
+        #000011 25%, 
+        #1a0a2a 50%, 
+        #00001a 75%, 
+        #0a0a1a 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 25s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    z-index: -3;
+    opacity: 0.9;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 100% 25%; }
+    50% { background-position: 50% 100%; }
+    75% { background-position: 0% 75%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Hero Content Container */
+.hero-content {
+    position: relative;
+    z-index: 4;
+    text-align: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 2rem;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+    transform-style: preserve-3d;
+    transform: translateZ(50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    isolation: isolate;
+}
+
+/* Headline Line Styling */
+.headline-line {
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.6em;
+    margin: 1rem 0;
+    line-height: 1.3;
+    background: linear-gradient(90deg, #ffffff, #e0e0ff, #ffffff, #c0c0ff);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(224, 224, 255, 0.6);
+    animation: shine 4s linear infinite, breathe 8s ease-in-out infinite;
+    opacity: 1;
+    filter: contrast(1.2) saturate(1.3);
+    perspective: 1000px;
+    text-align: center;
+}
+
+@keyframes shine {
+    to { background-position: 300% center; }
+}
+
+@keyframes breathe {
+    0%, 100% { opacity: 0.92; }
+    50% { opacity: 0.98; }
+}
+
+@keyframes letterShine {
+    0% { background-position: 0% center; }
+    100% { background-position: 250% center; }
+}
+
+@keyframes letterBreathe {
+    0%, 100% { opacity: 0.08; }
+    50% { opacity: 0.12; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(-50%, -50%) translateZ(100px) translateY(0px); }
+    50% { transform: translate(-50%, -50%) translateZ(100px) translateY(-20px); }
+}
+
+/* Individual Letters */
+.letter {
+    display: inline-block;
+    opacity: 0.12;
+    transform: translateY(50px) scale(0.8) translateZ(30px);
+    will-change: transform, opacity;
+    filter: blur(2px);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    background: linear-gradient(90deg, #ffffff, #e0e0ff, #ffffff, #c0c0ff);
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: letterShine 8s linear infinite, letterBreathe 12s ease-in-out infinite;
+    position: relative;
+    z-index: 3;
+}
+
+/* Stats Container */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    transform: translateZ(20px);
+    position: relative;
+    z-index: 5;
+    isolation: isolate;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 1.8rem 2.2rem;
+    min-width: 180px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform, opacity;
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(138, 138, 255, 0.15),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(15px);
+    isolation: isolate;
+    z-index: 6;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 
+        0 18px 50px rgba(0, 0, 0, 0.45),
+        0 0 35px rgba(138, 138, 255, 0.25),
+        inset 0 0 15px rgba(255, 255, 255, 0.08);
+    border-color: rgba(160, 160, 255, 0.25);
+}
+
+.stat-number {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #b0b0ff, #ffffff, #d0d0ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(176, 176, 255, 0.3);
+}
+
+.stat-label {
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+}
+
+/* ==================== VISUAL ELEMENT ==================== */
+.hero-visual {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.visual-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(100px);
+    width: 240px;
+    height: 240px;
+    background: 
+        radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.6) 0%, transparent 25%),
+        radial-gradient(circle, 
+            rgba(138, 138, 255, 0.7) 0%, 
+            rgba(110, 110, 238, 0.5) 30%, 
+            rgba(85, 85, 204, 0.3) 60%, 
+            rgba(58, 58, 138, 0.1) 100%);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 60px rgba(138, 138, 255, 0.6),
+        0 0 100px rgba(110, 110, 238, 0.4),
+        0 0 140px rgba(85, 85, 204, 0.2),
+        inset 0 0 30px rgba(255, 255, 255, 0.1);
+    will-change: transform;
+    animation: float 6s ease-in-out infinite;
+    filter: brightness(1.1) saturate(1.1);
+    mix-blend-mode: screen;
+    opacity: 0.8;
+}
+
+/* ==================== CONTENT SECTION ==================== */
+.content {
+    min-height: 100vh;
+    padding: 6rem 2rem;
+    background: linear-gradient(to bottom, 
+        #000011 0%, 
+        #0a0a1a 30%, 
+        #120a2a 70%, 
+        #000015 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.content-wrapper {
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.content h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 2rem;
+    background: linear-gradient(90deg, #ffffff, #e0e0ff, #ffffff, #c0c0ff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 25px rgba(224, 224, 255, 0.4);
+    opacity: 0;
+    transform: translateY(40px);
+    will-change: transform, opacity;
+    filter: contrast(1.1);
+}
+
+.content p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    will-change: transform, opacity;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 768px) {
+    .hero {
+        perspective: 600px;
+    }
+    
+    .headline-line {
+        letter-spacing: 0.25em;
+        margin: 0.8rem 0;
+        transform: translateZ(12px);
+        opacity: 0.1;
+        font-size: clamp(1.5rem, 5vw, 3rem);
+    }
+    
+    .visual-element {
+        width: 180px;
+        height: 180px;
+        opacity: 0.7;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        transform: translateZ(6px);
+        z-index: 5;
+    }
+    
+    .stat-card {
+        width: 100%;
+        max-width: 260px;
+        padding: 1.2rem 1.6rem;
+        transform: translateZ(3px);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 6;
+    }
+    
+    .visual-element {
+        width: 100px;
+        height: 100px;
+        transform: translate(-50%, -50%) translateZ(30px);
+        box-shadow: 
+            0 0 50px rgba(138, 138, 255, 0.6),
+            0 0 80px rgba(110, 110, 238, 0.3),
+            0 0 120px rgba(85, 85, 204, 0.15);
+    }
+    
+    .content {
+        padding: 2.5rem 1rem;
+    }
+    
+    .hero::after {
+        height: 150px;
+    }
+    
+    .hero::before {
+        opacity: 0.35;
+    }
+    
+    .letter {
+        opacity: 0.09;
+        filter: blur(1.5px);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 0 0.6rem;
+        transform: translateZ(6px);
+        gap: 1rem;
+        z-index: 4;
+    }
+    
+    .headline-line {
+        letter-spacing: 0.2em;
+        margin: 0.6rem 0;
+        font-size: clamp(1.2rem, 4vw, 2.5rem);
+        opacity: 0.08;
+    }
+    
+    .visual-element {
+        width: 140px;
+        height: 140px;
+        opacity: 0.6;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        transform: translateZ(4px);
+        z-index: 5;
+    }
+    
+    .stat-card {
+        padding: 1rem 1.4rem;
+        min-width: 140px;
+        transform: translateZ(2px);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 6;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    /* Remove duplicate visual-element rule */
+    
+    .content {
+        padding: 2rem 0.6rem;
+    }
+    
+    .hero::after {
+        height: 120px;
+    }
+    
+    .hero::before {
+        opacity: 0.3;
+    }
+    
+    .letter {
+        opacity: 0.07;
+        filter: blur(1px);
+    }
+}
+
+/* ==================== SMOOTH SCROLL ==================== */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for premium feel */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(10, 10, 26, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6e6eff, #a0a0ff);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #7a7aff, #b0b0ff);
+}
+
+/* ==================== PERFORMANCE OPTIMIZATIONS ==================== */
+.hero,
+.hero-bg,
+.hero::before,
+.hero::after,
+.visual-element,
+.stat-card,
+.letter,
+.content h2,
+.content p,
+.stats-container,
+.content,
+.hero-content {
+    will-change: transform, opacity;
+    contain: layout style paint;
+    transform: translateZ(0);
+}
+
+/* Smooth transitions for all animated elements */
+.hero-content,
+.stat-card,
+.visual-element,
+.letter,
+.content h2,
+.content p,
+.stats-container {
+    transition: transform var(--transition-speed) cubic-bezier(0.23, 1, 0.32, 1),
+                opacity var(--transition-speed) cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ==================== LOADING STATE ==================== */
+.hero {
+    opacity: 0;
+}
+
+.hero.loaded {
+    opacity: 1;
+}
+
+.hero:not(.loaded) .letter {
+    transition: none;
+}
+
+.hero:not(.loaded) .stat-card {
+    transition: none;
+}
+
+.hero:not(.loaded) .visual-element {
+    transition: none;
+}
+
+/* ==================== SECTION TRANSITION ==================== */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(to top, 
+        #000000 0%, 
+        rgba(10, 10, 26, 0.9) 20%, 
+        rgba(15, 15, 35, 0.7) 40%, 
+        rgba(20, 20, 45, 0.4) 70%, 
+        transparent 100%);
+    z-index: 1;
+    pointer-events: none;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+/* ==================== VIGNETTE OVERLAY ==================== */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, 
+        transparent 40%, 
+        rgba(10, 10, 26, 0.25) 70%, 
+        rgba(5, 5, 15, 0.5) 90%,
+        rgba(0, 0, 0, 0.7) 100%);
+    z-index: 0;
+    pointer-events: none;
+    opacity: var(--bg-intensity);
+    transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1);
+    mix-blend-mode: multiply;
+}
